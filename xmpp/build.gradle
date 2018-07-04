@@ -1,0 +1,133 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        multiDexEnabled true
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    android {
+//        lintOptions {
+//            abortOnError false
+//        }
+//    }
+
+
+}
+
+
+//task makeJar(type: Jar) {
+//    from zipTree(file('build/intermediates/bundles/release/classes.jar'))
+////    from fileTree(dir:"src/main", includes:['libs/asmack-android-17-0.8.10.jar'])
+//    from fileTree(dir:"libs")
+//    baseName = 'xmpp'
+//    destinationDir = file("build")
+//}
+//makeJar.dependsOn(build)
+
+//task clearJar(type: Delete) {
+//    delete 'libs/xmpp.jar' //sdk是你自己jar包的名字，随便命名
+//}
+//task makeJar(type:org.gradle.api.tasks.bundling.Jar) {
+//    baseName 'xmpp'
+//    from('build/intermediates/classes/debug/com/example/xmpp/')
+//    into('b/')
+//    exclude('test/', 'BuildConfig.class', 'R.class')
+//    exclude{it.name.startsWith('R');}
+//}
+//makeJar.dependsOn(clearJar, build)
+
+//task makeJar(type: Copy) {
+//    delete 'build/libs/xmpp.jar' //删除已经存在的jar包
+//    from('build/intermediates/classes/debug/com/example/xmpp/')//从该目录下加载要打包的文件
+////    from('build/intermediates/bundles/release/')//从该目录下加载要打包的文件
+////    from(project.zipTree('libs/asmack-android-17-0.8.10.jar'))
+//    into('build/libs/')//jar包的保存目录
+//    include('classes.jar')//设置过滤，只打包classes文件
+//    rename('classes.jar', 'xmpp.jar')//重命名，mylibrary.jar 根据自己的需求设置
+//
+////    archiveName = 'xmpp.jar'
+////    from(project.zipTree('build/intermediates/bundles/release/','libs/asmack-android-17-0.8.10.jar'))
+////    destinationDir = file('build/libs')
+//
+//}
+//makeJar.dependsOn(build)
+
+
+//task clearJar(type: Delete) {
+//    delete 'build/libs/xmpp.jar' //jar包的名字，随便命名
+//}
+//task makeJar(type:org.gradle.api.tasks.bundling.Jar) {
+//    //指定生成的jar名
+//    baseName 'xmpp.jar'
+//    //从哪里打包class文件
+//    from('build/intermediates/bundles/default/')
+//    //打包到jar后的目录结构
+//    into('libs/')
+//    //去掉不需要打包的目录和文件
+//    exclude('test/', 'BuildConfig.class', 'R.class')
+//    //去掉R开头的文件
+//    exclude{it.name.startsWith('R');}
+//}
+//makeJar.dependsOn(clearJar, build)
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    provided fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_20170710.jar')
+    implementation files('libs/com.google.zxing.client.android.captureactivity.jar')
+    implementation files('libs/dom4j-1.6.1.jar')
+    implementation files('libs/gesture-imageview.jar')
+    implementation files('libs/gson-1.6.jar')
+    implementation files('libs/HwPush_SDK_V2705.jar')
+    implementation files('libs/javacpp.jar')
+    implementation files('libs/javacv.jar')
+    implementation files('libs/jcore-android_v1.1.3.jar')
+    implementation files('libs/jpush-android_v3.0.6.jar')
+    implementation files('libs/locSDK_4.0.jar')
+    implementation files('libs/MiPush_SDK_Client_3_2_2.jar')
+    implementation files('libs/universal-image-loader-1.9.3.jar')
+    implementation files('libs/wup-1.0.0.E-SNAPSHOT.jar')
+    implementation files('libs/asmack-android-17-0.8.10.jar')
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    compile 'com.lzy.widget:imagepicker:0.5.5'
+    compile 'com.yanzhenjie.nohttp:nohttp:1.1.3'
+    compile 'com.yanzhenjie.nohttp:okhttp:1.1.3'
+    compile 'q.rorbin:badgeview:1.1.2'
+    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
+    compile 'com.amap.api:search:latest.integration'
+    compile 'com.amap.api:location:latest.integration'
+    compile 'com.yanzhenjie:permission:1.1.0'
+    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    compile 'com.googlecode.mp4parser:isoparser:1.0-RC-27'
+    compile 'com.github.nanchen2251:CompressHelper:1.0.5'
+}

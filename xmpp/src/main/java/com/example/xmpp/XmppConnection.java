@@ -201,18 +201,17 @@ public class XmppConnection implements PacketListener {
 
 	/**
 	 * @param user
-	 * @param xmppConnection
 	 * @return
 	 */
-	public VCard getUserInfo(String user, XmppConnection xmppConnection) {  //
+	public VCard getUserInfo(String user) {  //
 		try {
 			VCard vcard = new VCard();
 			ProviderManager.getInstance().addIQProvider("vCard", "vcard-temp", new VCardProvider());
 			if (user == null) {
-				vcard.load(xmppConnection.getConnection());
+				vcard.load(getConnection());
 			}
 			else {
-				vcard.load(xmppConnection.getConnection(), user + "@" + Constants.XMPP_HOSTNAME);
+				vcard.load(getConnection(), user + "@" + Constants.XMPP_HOSTNAME);
 			}
 			if (vcard != null)
 				return vcard;
@@ -505,7 +504,8 @@ public class XmppConnection implements PacketListener {
 		clearData();
 		closeXmppService();
 	}
-	private void clearData() {
+
+	public void clearData() {
 		MessageConstants.msgMap.clear();
 		this.offlineList.clear();
 		MessageConstants.roster.clear();
@@ -772,7 +772,7 @@ public class XmppConnection implements PacketListener {
 	 * @param roomName		房间名称
 	 * @param description		描述
 	 */
-	public MultiUserChat createRoom(Context ctx, String roomName, String description) {//String user,
+	public MultiUserChat createRoom(String roomName, String description) {//String user,
 		if (getConnection() == null)
 			return null;
 
@@ -1125,7 +1125,8 @@ public class XmppConnection implements PacketListener {
 	}
 	*/
 
-	public static void getUserinfo(final Context ctx){
+	public void getUserinfo(){
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -1183,7 +1184,7 @@ public class XmppConnection implements PacketListener {
 						MessageConstants.friendslist.add(user);
 						MessageConstants.friendslist_all.add(user);
 					}
-					ctx.sendBroadcast(new Intent("ChatNewMsg"));
+                    ctx.sendBroadcast(new Intent("ChatNewMsg"));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

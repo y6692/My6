@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //    implementation files('libs/xmpp.jar')
     //    compile(name: 'xmpp-release', ext: 'aar')
-    compile 'com.github.nanchen2251:CompressHelper:1.0.5'
+    api 'com.github.nanchen2251:CompressHelper:1.0.5'
     implementation project(':xmpp')
+//    implementation files('libs/asmack-android-17-0.8.10.jar')
 }

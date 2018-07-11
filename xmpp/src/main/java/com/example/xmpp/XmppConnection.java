@@ -424,7 +424,7 @@ public class XmppConnection implements PacketListener {
 	}
 
 	@SuppressLint("NewApi")
-	public void sendMsg(Context ctx, String msg, int chatType) throws Exception {
+	public void sendMsg(String msg, int chatType) throws Exception {
 		if (getConnection() == null){
 			throw new Exception("XmppException");
 		}

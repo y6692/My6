@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
                 XMPP.setNotifyClass(MainActivity.class);
                 XMPP.setRecevier("yy",  ChatItem.CHAT);
-                XMPP.sendMsg( "123",  ChatItem.CHAT);
+                XMPP.sendTextMsg( "123",  ChatItem.CHAT);
 
 //                String a = Constants.XMPP_HOSTNAME;
 //                XmppConnection.getInstance(ctx).createRoom(ctx, "", "");

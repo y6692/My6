@@ -75,12 +75,64 @@ public class XMPP {
         XmppConnection.getInstance(ctx).setRecevier(chatName, chatType);
     }
 
-    public static void sendMsg(String msg, int chatType){
+    public static void sendTextMsg(String msg, int chatType){
         try{
             JSONObject obj = new JSONObject();
             obj.put("msg", msg);
             obj.put("bodyType", "0");
-            XmppConnection.getInstance(ctx).sendMsg(ctx, obj.toString(), chatType);
+            XmppConnection.getInstance(ctx).sendMsg(obj.toString(), chatType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //发送文字、表情
+    public static void sendImgMsg(String base64String, int chatType){
+        try{
+            JSONObject obj = new JSONObject();
+            obj.put("msg", base64String);
+            obj.put("bodyType", "2");
+            XmppConnection.getInstance(ctx).sendMsg(obj.toString(), chatType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //发送录音
+    public static void sendRecordMsg(String audioPath, int chatType){
+        try{
+            JSONObject obj = new JSONObject();
+            obj.put("msg", ImageUtil.getBase64StringFromFile(audioPath));
+            obj.put("bodyType", "3");
+            XmppConnection.getInstance(ctx).sendMsg(obj.toString(), chatType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //发送小视频
+    public static void sendVideoMsg(String msg, int chatType){
+        try{
+            JSONObject obj = new JSONObject();
+            obj.put("msg", msg);
+            obj.put("bodyType", "5");
+            XmppConnection.getInstance(ctx).sendMsg(obj.toString(), chatType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //发送定位
+    public static void sendPositionMsg(String lat, String lon, String name, String address, String imageUrl, int chatType){
+        try{
+            JSONObject obj = new JSONObject();
+            obj.put("lat", lat);
+            obj.put("lon", lon);
+            obj.put("name", name);
+            obj.put("address", address);
+            obj.put("imageUrl", imageUrl);
+            obj.put("bodyType", "6");
+            XmppConnection.getInstance(ctx).sendMsg(obj.toString(), chatType);
         } catch (Exception e) {
             e.printStackTrace();
         }

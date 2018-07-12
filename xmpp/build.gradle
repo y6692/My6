@@ -4,13 +4,12 @@ android {
     compileSdkVersion 26
 
     defaultConfig {
-        multiDexEnabled true
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -26,6 +25,11 @@ android {
 //        }
 //    }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 
 }
 
@@ -85,20 +89,11 @@ android {
 //}
 //makeJar.dependsOn(clearJar, build)
 
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
+repositories {
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    provided fileTree(include: ['*.jar'], dir: 'libs')
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_20170710.jar')
     implementation files('libs/com.google.zxing.client.android.captureactivity.jar')
     implementation files('libs/dom4j-1.6.1.jar')

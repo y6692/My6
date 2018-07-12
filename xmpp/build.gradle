@@ -109,8 +109,6 @@ dependencies {
     implementation files('libs/universal-image-loader-1.9.3.jar')
     implementation files('libs/wup-1.0.0.E-SNAPSHOT.jar')
     implementation files('libs/asmack-android-17-0.8.10.jar')
-    api 'com.android.support:multidex:1.0.1'
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
     api 'com.jakewharton:butterknife:8.6.0'
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     api 'com.lzy.widget:imagepicker:0.5.5'
